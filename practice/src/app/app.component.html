@@ -1,0 +1,112 @@
+<h1>My First Angular app</h1>
+<p>ROUTER OUTLET START</p>
+<router-outlet></router-outlet>
+<p>ROUTER OUTLET END</p>
+<a routerLink="/course" routerLinkActive="active current">go to course </a>
+<!-- dynamic routing using (sending along params) -->
+<a [routerLink]="['/course','1']"> go to course id</a>
+<a routerLink="/contactForm" routerLinkActive="active current"> go to contact Form</a>
+
+<courses></courses>
+<!-- directives concept -->
+<!-- two types pf directives 1.Structural Directice (that adds/removes elemnts in DOM) 2.Attribute Directive (that modifies
+  the attributes of DOM elemrnt) -->
+<!-- Use '*' prefix before structure directive 'ngIf', 'ngFor' -->
+
+<!-- ANGULAR 2 APPROACH -->
+<div *ngIf="movies.length > 0">
+  <ul>
+    <li *ngFor="let movie of movies">
+      {{ movie }}
+    </li>
+  </ul>
+</div>
+<div *ngIf="movies.length == 0">
+  <p>No movies found</p>
+</div>
+
+<!-- ANGULAR 4 APPROACH -->
+<div *ngIf="movies.length > 0; then courses; else noCourses">
+  <!-- <ul>
+    <li *ngFor="let movie of movies">
+      {{movie}} angular 4 appraoch
+    </li>
+  </ul> -->
+</div>
+<!-- # means identifier -->
+<ng-template #courses>
+  <ul>
+    <li *ngFor="let movie of movies">{{ movie }} angular 4 appraoch</li>
+  </ul>
+</ng-template>
+<ng-template #noCourses>
+  <p>No movies found (angular 4 appraoch)</p>
+</ng-template>
+
+<!-- another way to show/hide html content -->
+<!-- hidden proprty -->
+<!-- bind hidden proprty with expression -->
+<div [hidden]="movies.length == 0">movies list (Hidden appraoch)</div>
+<div [hidden]="movies.length > 0">No movies</div>
+
+<!-- ngSwitch -->
+<!-- [ngSwitch]  this property add by angular in DOM element and bind with data property-->
+<ul class="nav nav-pills">
+  <li  class="nav-item">
+    <a [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map View</a>
+  </li>
+  <li  class="nav-item">
+    <a [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List View</a>
+  </li>
+</ul>
+<div [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'map'">Map View</div>
+  <div *ngSwitchCase="'list'">List View</div>
+  <div *ngSwitchDefault>switch default render</div>
+</div>
+
+<!-- ngFor EXAMPLE -->
+
+<!-- ngFor direct export many other varaibles like index, even (even record), 0dd (odd record), first (first record), last (last record) -->
+<ul>
+  <li *ngFor="let course of coursesObj; index as i; even as isEven; odd as isOdd">
+   {{i}} - {{course.name}} {{isEven}} {{isOdd}}
+  </li>
+</ul>
+
+<!-- TWO WAY DATA BINDING ANGULAR 4 -->
+<!-- <input  [value]="email" (keyup.enter) = "email = $event.target.value; onKeyUp()" /> -->
+<input  [(ngModel)]="email" (keyup.enter) = "onKeyUp()" />
+
+
+<!-- Template driven forms in Angular -->
+<contact-form></contact-form>
+
+
+
+<!-- MATERIAL DESIGN -->
+<mat-checkbox>Subscribe to news sellerr</mat-checkbox>
+
+<!-- btn -->
+<button mat-button color="primary">Primary</button>
+    <button mat-button color="accent">Accent</button>
+    <button mat-button color="warn">Warn</button>
+    <button mat-button disabled>Disabled</button>
+
+    <button mat-raised-button>Basic</button>
+    <button mat-raised-button color="primary">Primary</button>
+    <button mat-raised-button color="accent">Accent</button>
+
+<!--select  -->
+<mat-form-field appearance="fill">
+  <mat-label>Toppings</mat-label>
+  <mat-select [formControl]="toppings" multiple>
+    <mat-select-trigger>
+      {{toppings.value ? toppings.value[0] : ''}}
+      <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+        (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+    </mat-select-trigger>
+    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+  </mat-select>
+</mat-form-field>

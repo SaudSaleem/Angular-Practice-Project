@@ -1,0 +1,47 @@
+<!-- Angular provides FormControl class (actual class) (which has to be instantate) -->
+
+<!-- it provides following fields -->
+<!-- 
+value,
+touched,
+untouched,
+dirty (form values edited)
+pristine (form value does'nt edited)
+valid
+error (if validation errors, what kind of error)
+ -->
+
+<!-- Angular also have 'FormGroup' class of particular form  for  controls (single input field) -->
+
+<!-- it also provides following fields -->
+<!-- 
+value,
+touched,
+untouched,
+dirty (form values edited)
+pristine (form value does'nt edited)
+valid  (returns true if all the controls have valid input)
+error (all errors of every control)
+  -->
+
+<!-- There are 2 ways to create Controls object
+    1. Directives (angular implicitly create control object and do works under the hood, good for small forms which needs required
+     or range constrains) Also known as 'TEMPLATE DRIVEN FORM'
+    2. Code (we instate these control classes and write our logic, we  more control over complex validation) Also known as "model driven form OR Reactive form"
+  -->
+
+  <!-- #firstName -> means template variable (we can assign value to this template var) -->
+<form>
+  <div class="form-group">
+    <label for="firstName"> First Name </label>
+    <input required minlength="2" maxlength="8" pattern="" ngModel name="firstName" #firstNameVar = "ngModel" id="firstName" type="text" class="form-control" (change) = "logFisrtName(firstNameVar)" />
+    <div class="alert alert-danger" *ngIf="firstNameVar.touched && !firstNameVar.valid">First Name is required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="comment"> Comment </label>
+    <textarea ngModel name="comment" #comment = "ngModel" id="comment" type="text" class="form-control" cols="30" rows="10">
+    </textarea>
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
