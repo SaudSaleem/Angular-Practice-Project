@@ -1,0 +1,24 @@
+<!-- Class binding using ngClass directive example [ngClass] = "{'class' : boolean}" -->
+<span
+  class="glyphicon"
+  [class.glyphicon-star]="isFavorite"
+  [class.glyphicon-star-empty]="!isFavorite"
+  [ngClass] = "{
+    'glyphicon-star' : isFavorite,
+    'glyphicon-star-empty' : !isFavorite
+  }"
+  (click) = "onClick()"
+>
+</span>
+<p  (click) = "onClick()" *ngIf="isFavorite">favorite</p>
+<p  (click) = "onClick()" *ngIf="!isFavorite">not favorite</p>
+<!-- SAFE OPERATOR TRAVERSAL CONCEPT  -->
+
+<!-- there is situation when assignee is null and we got error name of undifned or null -->
+<span *ngIf="task.assignee">{{task.assignee.name}}</span>
+<!-- another approach -->
+<div>{{task.assignee?.name}}</div>
+
+<!-- Custome directive (apply on input element) -->
+<span>custom directive example input</span>
+<input type="text" [appInputFormat]="'lowercase'"/>

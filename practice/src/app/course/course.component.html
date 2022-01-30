@@ -1,1 +1,10 @@
 <p>course works!</p>
+<input (keyup)="onKeyUp($event)" />
+<!-- EVENT FILTERING -->
+<p>using angular event filtering</p>
+<input (keyup.enter)="onKeyUp($event)" />
+<!-- PIPES  -->
+<p>Pipes example</p>
+<p>{{coursesPipes[0].name}}</p>
+<p>{{coursesPipes[0].name | uppercase}}</p>
+<p>{{'custom pipe hai yai' | Summary}}</p>

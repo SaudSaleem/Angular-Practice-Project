@@ -1,0 +1,8 @@
+<div class="zippy">
+    <div class="zippy-heading" [class.expended]="isExpended" (click)="isExpended = !isExpended">
+    {{title}}
+    </div>
+    <div class="zippy-body" *ngIf="isExpended">
+    <ng-content></ng-content>
+    </div>
+</div>

@@ -30,18 +30,79 @@ error (all errors of every control)
     2. Code (we instate these control classes and write our logic, we  more control over complex validation) Also known as "model driven form OR Reactive form"
   -->
 
-  <!-- #firstName -> means template variable (we can assign value to this template var) -->
-<form>
+<!-- #firstName -> means template variable (we can assign value to this template var) -->
+
+<!-- 'ngForm' directive -->
+<form #f="ngForm" (ngSubmit)="submit(f)">
   <div class="form-group">
     <label for="firstName"> First Name </label>
-    <input required minlength="2" maxlength="8" pattern="" ngModel name="firstName" #firstNameVar = "ngModel" id="firstName" type="text" class="form-control" (change) = "logFisrtName(firstNameVar)" />
-    <div class="alert alert-danger" *ngIf="firstNameVar.touched && !firstNameVar.valid">First Name is required</div>
+    <input
+      required
+      minlength="2"
+      maxlength="8"
+      pattern=""
+      ngModel
+      name="firstName"
+      #firstNameVar="ngModel"
+      id="firstName"
+      type="text"
+      class="form-control"
+      (change)="logFisrtName(firstNameVar)"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="firstNameVar.touched && !firstNameVar.valid"
+    >
+      First Name is required
+    </div>
   </div>
 
   <div class="form-group">
     <label for="comment"> Comment </label>
-    <textarea ngModel name="comment" #comment = "ngModel" id="comment" type="text" class="form-control" cols="30" rows="10">
+    <textarea
+      ngModel
+      name="comment"
+      #comment="ngModel"
+      id="comment"
+      type="text"
+      class="form-control"
+      cols="30"
+      rows="10"
+    >
     </textarea>
   </div>
-  <button class="btn btn-primary">Submit</button>
+  <label>
+    <input type="checkbox" ngModel name="isSubscribed" />
+  </label>
+  <div class="form-group">
+    <label for="contactMethod"></label>
+    <!-- use [ngValue] to bind with complex value object (by using this we can get complex value object) -->
+    <!-- use 'multiple' attribute to select multiple options -->
+    <select
+      ngModel
+      name="contactMethod"
+      id="contactMethod"
+      class="form-control"
+    >
+      <!--   <option [ngValue]="someObject">num1</option> -->
+      <option value="1">num1</option>
+      <option value="2">num2</option>
+      <option value="3">num3</option>
+    </select>
+  </div>
+  <!-- RADIO BTN -->
+  <div class="radio">
+    <label for=""
+      ><input type="radio" ngModel name="Radio" value="1" />Email</label
+    >
+  </div>
+  <div class="radio">
+    <label for=""
+      ><input type="radio" ngModel name="Radio" value="2" />Password</label
+    >
+  </div>
+  <p>{{ f.value | json }}</p>
+  <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
 </form>
+<!-- if you have complex form template with multiple sub group then use 'ngModelGroup' directive, this directive similar
+to ngForm but it doesn't emit (output) ngSubmit event. -->

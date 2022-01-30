@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { SummaryPipe } from './summary.pipe';
+import { FavoriteComponent } from './favorite/favorite.component'; 
+import { PanelComponent } from './panel/panel.component';
+import { InputFormatDirective } from './input-format.directive';
+import { ZippyComponent } from './zippy/zippy.component';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+import { PostsComponent } from './posts/posts.component';
 
 //import { RouterModule } from '@angular/router';
 // import module
@@ -22,6 +30,13 @@ import { MatSelectModule } from '@angular/material/select';
     CoursesComponent,
     CourseComponent,
     ContactFormComponent,
+    SummaryPipe,
+    FavoriteComponent,
+    PanelComponent,
+    InputFormatDirective,
+    ZippyComponent,
+    ReactiveFormsComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +54,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatButtonModule,
     MatSelectModule,
+    HttpClientModule
+     
   ],
   providers: [CoursesService], //this contains all dependencies of all components of particular module
   bootstrap: [AppComponent],

@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="login()">
+    <div *ngIf="form.errors" class="alert alert-danger">Errors</div>
+  <div class="form-group">
+    <label for="name">name</label>
+    <input formControlName="name" type="text" id="name" />
+    <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" class="alert alert-danger">Name Validation error</div>
+  </div>
+  <div class="form-group">
+    <label for="name">email</label>
+    <input formControlName="email" type="text" id="email" />
+    <div *ngIf="form.get('email')!.touched && form.get('email')!.invalid" class="alert alert-danger">Email Validation error</div>
+  </div>
+  <button type="submit">Sign up</button>
+</form>
+
+
+<!-- NESTED FORM EXAMPLE -->
+<p>NESTED FORM EXAMPLE</p>
+<form [formGroup]="form" (ngSubmit)="login()">
+    <div *ngIf="form.errors" class="alert alert-danger">Errors</div>
+    <div formGroupName = "account">
+  <div class="form-group">
+    <label for="name">name</label>
+    <input formControlName="name" type="text" id="name" />
+    <div *ngIf="form.get('name')!.touched && form.get('name')!.invalid" class="alert alert-danger">Name Validation error</div>
+  </div>
+  <div class="form-group">
+    <label for="name">email</label>
+    <input formControlName="email" type="text" id="email" />
+    <div *ngIf="form.get('email')!.touched && form.get('email')!.invalid" class="alert alert-danger">Email Validation error</div>
+  </div>
+</div>
+  <button type="submit">Sign up</button>
+</form>
+
+<!-- FormArray Example -->
+<form>
+  <!-- #topic var is reference to this input field so we access its value property -->
+  <input type="text" class="form-control" (keyup.enter)="addTopic(topic)" #topic>
+  <!-- we will all topics using form.get methods, form.get('topics').controls returns all form controlsc(topics) -->
+  <ul class="list-group" *ngFor="let topic of getTopics.controls">
+    <li class="list-group-item" (click)="removeTopic(topic)">{{topic.value}}</li>
+  </ul>
+</form>

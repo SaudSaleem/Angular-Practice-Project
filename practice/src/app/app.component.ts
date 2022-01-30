@@ -39,4 +39,13 @@ export class AppComponent {
   {
     console.log(this.email)
   }
+  //event emit by child component
+  onFavoriteChange(data: any)
+  {
+    console.log('onFavoriteChange' + data)
+  }
+  //method for optimize change detection
+  trackCourse(index :any, course:any){
+    return course ? course.id : undefined
+  }
 }

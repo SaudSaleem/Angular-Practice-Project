@@ -11,4 +11,7 @@ export class ContactFormComponent {
   {
     console.log(value)
   }
+  submit(f:any){
+    console.log('ngForm',f)
+  }
 }

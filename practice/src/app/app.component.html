@@ -1,11 +1,31 @@
 <h1>My First Angular app</h1>
+<p>Slots Example</p>
+<bootrap-panel> 
+<div class="headingSlot">
+  this data is placed at heading SLOT
+</div>
+<div class="bodySlot">
+  <!-- <ngContainer> </ngContainer> if u dont want to use any html elemnt -->
+  <p>this data is placed at body SLOT</p>
+</div>
+</bootrap-panel>
+
+<favorite
+  [is-favorite]="true"
+  (eventEmitted)="onFavoriteChange($event)"
+></favorite>
 <p>ROUTER OUTLET START</p>
+<h1>zippi component</h1>
+<zippy title="Shopping Details content">Shopping Details</zippy>
 <router-outlet></router-outlet>
+
 <p>ROUTER OUTLET END</p>
 <a routerLink="/course" routerLinkActive="active current">go to course </a>
 <!-- dynamic routing using (sending along params) -->
-<a [routerLink]="['/course','1']"> go to course id</a>
-<a routerLink="/contactForm" routerLinkActive="active current"> go to contact Form</a>
+<a [routerLink]="['/course', '1']"> go to course id</a>
+<a routerLink="/contactForm" routerLinkActive="active current">
+  go to contact Form</a
+>
 
 <courses></courses>
 <!-- directives concept -->
@@ -15,6 +35,11 @@
 
 <!-- ANGULAR 2 APPROACH -->
 <div *ngIf="movies.length > 0">
+  <!-- WE CAN trackBy in ngFor to tell Angular that only re render DOM(ul) only when courses content changes -->
+  
+  <!--  <li *ngFor="let movie of movies" trackBy: trackCourse>
+      {{ movie }}
+    </li> -->
   <ul>
     <li *ngFor="let movie of movies">
       {{ movie }}
@@ -52,11 +77,15 @@
 <!-- ngSwitch -->
 <!-- [ngSwitch]  this property add by angular in DOM element and bind with data property-->
 <ul class="nav nav-pills">
-  <li  class="nav-item">
-    <a [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map View</a>
+  <li class="nav-item">
+    <a [class.active]="viewMode == 'map'" (click)="viewMode = 'map'"
+      >Map View</a
+    >
   </li>
-  <li  class="nav-item">
-    <a [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List View</a>
+  <li class="nav-item">
+    <a [class.active]="viewMode == 'list'" (click)="viewMode = 'list'"
+      >List View</a
+    >
   </li>
 </ul>
 <div [ngSwitch]="viewMode">
@@ -69,44 +98,53 @@
 
 <!-- ngFor direct export many other varaibles like index, even (even record), 0dd (odd record), first (first record), last (last record) -->
 <ul>
-  <li *ngFor="let course of coursesObj; index as i; even as isEven; odd as isOdd">
-   {{i}} - {{course.name}} {{isEven}} {{isOdd}}
+  <li
+    *ngFor="let course of coursesObj; index as i; even as isEven; odd as isOdd"
+  >
+    {{ i }} - {{ course.name }} {{ isEven }} {{ isOdd }}
   </li>
 </ul>
 
 <!-- TWO WAY DATA BINDING ANGULAR 4 -->
 <!-- <input  [value]="email" (keyup.enter) = "email = $event.target.value; onKeyUp()" /> -->
-<input  [(ngModel)]="email" (keyup.enter) = "onKeyUp()" />
-
+<input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
 
 <!-- Template driven forms in Angular -->
 <contact-form></contact-form>
-
-
-
+<!-- TEMPLATE FORREACTIVE FORMS -->
+<reactive-forms></reactive-forms>
 <!-- MATERIAL DESIGN -->
 <mat-checkbox>Subscribe to news sellerr</mat-checkbox>
 
 <!-- btn -->
 <button mat-button color="primary">Primary</button>
-    <button mat-button color="accent">Accent</button>
-    <button mat-button color="warn">Warn</button>
-    <button mat-button disabled>Disabled</button>
+<button mat-button color="accent">Accent</button>
+<button mat-button color="warn">Warn</button>
+<button mat-button disabled>Disabled</button>
 
-    <button mat-raised-button>Basic</button>
-    <button mat-raised-button color="primary">Primary</button>
-    <button mat-raised-button color="accent">Accent</button>
+<button mat-raised-button>Basic</button>
+<button mat-raised-button color="primary">Primary</button>
+<button mat-raised-button color="accent">Accent</button>
 
 <!--select  -->
 <mat-form-field appearance="fill">
   <mat-label>Toppings</mat-label>
   <mat-select [formControl]="toppings" multiple>
     <mat-select-trigger>
-      {{toppings.value ? toppings.value[0] : ''}}
-      <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
-        (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+      {{ toppings.value ? toppings.value[0] : "" }}
+      <span
+        *ngIf="toppings.value?.length > 1"
+        class="example-additional-selection"
+      >
+        (+{{ toppings.value.length - 1 }}
+        {{ toppings.value?.length === 2 ? "other" : "others" }})
       </span>
     </mat-select-trigger>
-    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+      topping
+    }}</mat-option>
   </mat-select>
 </mat-form-field>
+
+<!-- HTTP SERVICES -->
+<app-posts></app-posts>
