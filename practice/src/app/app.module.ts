@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses.component';
 import { CourseComponent } from './course/course.component';
-import { CoursesService } from './courses.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +19,9 @@ import { InputFormatDirective } from './input-format.directive';
 import { ZippyComponent } from './zippy/zippy.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { PostsComponent } from './posts/posts.component';
+import { PostService } from './services/post.service';
+import { CoursesService } from './services/courses.service';
+import { AppErrorHandler } from './common/app-error-handler';
 
 //import { RouterModule } from '@angular/router';
 // import module
@@ -57,7 +59,10 @@ import { PostsComponent } from './posts/posts.component';
     HttpClientModule
      
   ],
-  providers: [CoursesService], //this contains all dependencies of all components of particular module
+  //this contains all dependencies of all components of particular module
+  providers: [CoursesService,PostService,
+    {provide:ErrorHandler,useClass:AppErrorHandler } //its tells angular where ever you using 'ErrorHandler' class replace it with 'AppErrorHandler' class
+  ], 
   bootstrap: [AppComponent],
 })
 export class AppModule {}

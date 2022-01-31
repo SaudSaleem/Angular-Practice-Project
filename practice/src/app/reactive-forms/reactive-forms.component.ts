@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NameValidators } from './name-validators';
+import { NameValidators } from '../common/name-validators';
 @Component({
   selector: 'reactive-forms',
   templateUrl: './reactive-forms.component.html',
