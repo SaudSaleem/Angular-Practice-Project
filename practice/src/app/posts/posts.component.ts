@@ -17,6 +17,8 @@ export class PostsComponent implements OnInit {
     //this method returns Obervable, we subscribe methdo of observable for response handling,
     //subscribe method has 3 diff overloading methods, we can use anyone.(use arrow keys to read all overloading functions)
     //subscribe handles both response, error situations.
+    //Observables are collection of async data which arrives over time
+    // Obserable<any> means collection (every collection of type any) 
   }
   createPost(input: HTMLInputElement) {
     let post = { title: input.value };

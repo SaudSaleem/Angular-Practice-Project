@@ -22,6 +22,10 @@ import { PostsComponent } from './posts/posts.component';
 import { PostService } from './services/post.service';
 import { CoursesService } from './services/courses.service';
 import { AppErrorHandler } from './common/app-error-handler';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
+import { NoAccessComponent } from './no-access/no-access.component';
 
 //import { RouterModule } from '@angular/router';
 // import module
@@ -38,7 +42,11 @@ import { AppErrorHandler } from './common/app-error-handler';
     InputFormatDirective,
     ZippyComponent,
     ReactiveFormsComponent,
-    PostsComponent
+    PostsComponent,
+    NotFoundComponent,
+    AdminComponent,
+    LoginComponent,
+    NoAccessComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +56,7 @@ import { AppErrorHandler } from './common/app-error-handler';
     //   { path: 'course', component: CourseComponent },
     //   { path: 'course/:coursename', component: CourseComponent },
     //   { path: 'contactForm', component: ContactFormComponent },
-    // ]),
+    // ]),Z
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

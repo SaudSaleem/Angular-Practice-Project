@@ -1,32 +1,47 @@
-<h1>My First Angular app</h1>
-<p>Slots Example</p>
-<bootrap-panel> 
-<div class="headingSlot">
-  this data is placed at heading SLOT
-</div>
-<div class="bodySlot">
-  <!-- <ngContainer> </ngContainer> if u dont want to use any html elemnt -->
-  <p>this data is placed at body SLOT</p>
-</div>
-</bootrap-panel>
+<!-- ROUTER -->
+<button routerLink="/course" routerLinkActive="active current">go to course </button>
+<!-- dynamic routing using (sending along params) -->
+<button [routerLink]="['/course', '1']"> go to course id</button>
+<button routerLink="/course" [queryParams]="{ page: 1, name: 'saud' }">
+  go to course with route params</button
+>
 
+<button routerLink="/contactForm" routerLinkActive="active current">
+  go to contact Form</button
+>
+
+
+<h3>ROUTER OUTLET START</h3>
+<router-outlet></router-outlet>
+<h3>ROUTER OUTLET END</h3>
+
+
+
+
+
+
+
+
+
+<h1 style="margin-top: 500px">My First Angular app</h1>
+<p>Slots Example</p>
+<!-- SLOTS -->
+<bootrap-panel>
+  <div class="headingSlot">this data is placed at heading SLOT</div>
+  <div class="bodySlot">
+    <!-- <ngContainer> </ngContainer> if u dont want to use any html elemnt -->
+    <p>this data is placed at body SLOT</p>
+  </div>
+</bootrap-panel>
+<!-- FAVORITE COMPENENT -->
 <favorite
   [is-favorite]="true"
   (eventEmitted)="onFavoriteChange($event)"
 ></favorite>
-<p>ROUTER OUTLET START</p>
+
+<!-- ROUTER END -->
 <h1>zippi component</h1>
 <zippy title="Shopping Details content">Shopping Details</zippy>
-<router-outlet></router-outlet>
-
-<p>ROUTER OUTLET END</p>
-<a routerLink="/course" routerLinkActive="active current">go to course </a>
-<!-- dynamic routing using (sending along params) -->
-<a [routerLink]="['/course', '1']"> go to course id</a>
-<a routerLink="/contactForm" routerLinkActive="active current">
-  go to contact Form</a
->
-
 <courses></courses>
 <!-- directives concept -->
 <!-- two types pf directives 1.Structural Directice (that adds/removes elemnts in DOM) 2.Attribute Directive (that modifies
@@ -36,7 +51,7 @@
 <!-- ANGULAR 2 APPROACH -->
 <div *ngIf="movies.length > 0">
   <!-- WE CAN trackBy in ngFor to tell Angular that only re render DOM(ul) only when courses content changes -->
-  
+
   <!--  <li *ngFor="let movie of movies" trackBy: trackCourse>
       {{ movie }}
     </li> -->
