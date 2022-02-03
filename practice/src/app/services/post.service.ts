@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -13,6 +13,17 @@ import { NotFoundError } from '../common/not-found-error';
 export class PostService {
   constructor(private http: HttpClient) {}
   private url: string = 'https://jsonplaceholder.typicode.com/posts';
+
+  //get all users from our node server that we created
+  getAllUsers()
+  {
+    let headers = new HttpHeaders();
+    let token = localStorage.getItem('token')
+    headers.append('Authorization','Bearer '+ token)
+    let options  = { headers: headers };
+    return this.http
+    .get('http://127.0.0.1:3000/api/user', options).subscribe(res => console.log(res))
+  }
   getPosts(): Observable<Object> {
     return this.http.get(this.url).pipe(map((response) => response)); //map take items of obserable and mutate it according to requiremtn,,it only invoked insde pipe() method
   }
