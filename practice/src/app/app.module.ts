@@ -1,3 +1,4 @@
+import { TokenService } from './services/token-service';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,7 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { SummaryPipe } from './summary.pipe';
-import { FavoriteComponent } from './favorite/favorite.component'; 
+import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
 import { InputFormatDirective } from './input-format.directive';
 import { ZippyComponent } from './zippy/zippy.component';
@@ -46,7 +47,7 @@ import { NoAccessComponent } from './no-access/no-access.component';
     NotFoundComponent,
     AdminComponent,
     LoginComponent,
-    NoAccessComponent
+    NoAccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,13 +65,15 @@ import { NoAccessComponent } from './no-access/no-access.component';
     MatCheckboxModule,
     MatButtonModule,
     MatSelectModule,
-    HttpClientModule
-     
+    HttpClientModule,
   ],
   //this contains all dependencies of all components of particular module
-  providers: [CoursesService,PostService,
-    {provide:ErrorHandler,useClass:AppErrorHandler } //its tells angular where ever you using 'ErrorHandler' class replace it with 'AppErrorHandler' class
-  ], 
+  providers: [
+    CoursesService,
+    PostService,
+    TokenService,
+    { provide: ErrorHandler, useClass: AppErrorHandler }, //its tells angular where ever you using 'ErrorHandler' class replace it with 'AppErrorHandler' class
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

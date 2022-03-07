@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { combineLatestWith, map, Observable } from 'rxjs';
+import { TokenService } from '../services/token-service';
 
 @Component({
   selector: 'app-course',
@@ -18,15 +19,22 @@ export class CourseComponent implements OnInit {
       name: 'saleem',
     },
   ];
-  constructor(private route: ActivatedRoute,private router: Router) {}
-  navigate(){
-    this.router.navigate(['/contactForm'],{queryParams:{page:1,name:'saud'}})
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public tokenService: TokenService
+  ) {}
+  navigate() {
+    this.router.navigate(['/contactForm'], {
+      queryParams: { page: 1, name: 'saud' },
+    });
   }
   // EVENT FILTERING CONCEPT
   onKeyUp($event: any) {
     if ($event.keyCode == 13) console.log('enter pressed');
   }
   ngOnInit(): void {
+    console.log('course component ab render huwa hai');
     // let id = this.route.snapshot.paramMap.get('id') //use this apprach if you sure that user will move from this component and come back with new id as param
     //  but using thisappraoch component will re-initialize
     this.route.paramMap.subscribe((params: ParamMap) => {

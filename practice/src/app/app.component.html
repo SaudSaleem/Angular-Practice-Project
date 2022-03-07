@@ -1,27 +1,20 @@
 <!-- ROUTER -->
-<button routerLink="/course" routerLinkActive="active current">go to course </button>
+<button routerLink="/course" routerLinkActive="active current">
+  go to course
+</button>
 <!-- dynamic routing using (sending along params) -->
-<button [routerLink]="['/course', '1']"> go to course id</button>
+<button [routerLink]="['/course', '1']">go to course id</button>
 <button routerLink="/course" [queryParams]="{ page: 1, name: 'saud' }">
-  go to course with route params</button
->
+  go to course with route params
+</button>
 
 <button routerLink="/contactForm" routerLinkActive="active current">
-  go to contact Form</button
->
+  go to contact Form
+</button>
 
-
-<h3>ROUTER OUTLET START</h3>
-<router-outlet></router-outlet>
+<h3 *ngIf="tokenService.getToken">ROUTER OUTLET START</h3>
+<router-outlet *ngIf="tokenService.getToken"></router-outlet>
 <h3>ROUTER OUTLET END</h3>
-
-
-
-
-
-
-
-
 
 <h1 style="margin-top: 500px">My First Angular app</h1>
 <p>Slots Example</p>

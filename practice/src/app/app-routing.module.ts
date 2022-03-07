@@ -16,7 +16,11 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   //WE CAN ADD MULTIPLE ROUTE GUARD IN canActive property (by supllying gurad classes)
-  { path: 'admin', component: AdminComponent,canActivate:[AuthGuard, AdminAuthGuard ] },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard, AdminAuthGuard],
+  },
   { path: 'course', component: CourseComponent },
   { path: 'course/:coursename', component: CourseComponent },
   { path: 'contactForm', component: ContactFormComponent },
@@ -26,6 +30,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

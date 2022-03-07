@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { TokenService } from './services/token-service';
+import { FormControl } from '@angular/forms';
 interface coursesObject {
   id: number;
   name: string;
@@ -10,6 +11,7 @@ interface coursesObject {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  constructor(public tokenService: TokenService) {}
   title = 'Angular practice';
   movies: string[] = ['movie1', 'movie2', 'movie3'];
   viewMode: string = 'map';
@@ -29,23 +31,36 @@ export class AppComponent {
       name: 'safeer',
     },
   ];
-  email : string ='saud@yahoo.com';
+  email: string = 'saud@yahoo.com';
   toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  toppingList: string[] = [
+    'Extra cheese',
+    'Mushroom',
+    'Onion',
+    'Pepperoni',
+    'Sausage',
+    'Tomato',
+  ];
   showConsole() {
     console.log('saud console ' + this.viewMode);
   }
-  onKeyUp()
-  {
-    console.log(this.email)
+  onKeyUp() {
+    console.log(this.email);
   }
   //event emit by child component
-  onFavoriteChange(data: any)
-  {
-    console.log('onFavoriteChange' + data)
+  onFavoriteChange(data: any) {
+    console.log('onFavoriteChange' + data);
   }
   //method for optimize change detection
-  trackCourse(index :any, course:any){
-    return course ? course.id : undefined
+  trackCourse(index: any, course: any) {
+    return course ? course.id : undefined;
+  }
+  ngOnInit() {
+    console.log('uper hello');
+    setTimeout(() => {
+      console.log('hello');
+      this.tokenService.setToken = 'saud token';
+      console.log(this.tokenService.getToken);
+    }, 4000);
   }
 }
